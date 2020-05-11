@@ -1,0 +1,25 @@
+
+.btn-edit, .btn-delete{
+    background: #3798b8;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 2px;
+    border-radius: 5px;
+    vertical-align: middle;
+    padding: 2px 8px;
+}
+.btn-delete{
+    background: #d51a1a;    
+}
+.table-name{
+    color: black;
+    font-weight: bold;
+    text-transform: capitalize;
+    
+}
+tbody.ant-table-tbody {
+    text-align: center;
+}
+.ant-table-thead > tr > th{
+    text-align: center;
+}
