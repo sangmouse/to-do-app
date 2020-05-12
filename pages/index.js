@@ -85,6 +85,7 @@ class Home extends React.Component {
     render() {
 
         const { list, taskEditing, status} = this.state
+        
 
         return (
             <div>
