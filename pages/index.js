@@ -1,22 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import Form from './../components/Form'
 import ListTable from '../components/ListTable'
-import { Layout } from 'antd'
-
-
 
 
 class Home extends React.Component {
-
-    // const [list, setList] = useState(null);
-    // const [selectedItem, setselectedItem] = useState(null);
 
 
     constructor(props) {
         super(props)
         this.state = {
             list: [],
-            selectedItem: null,
+            taskEditing: null,
             status : 0
         }
     }
@@ -34,23 +28,20 @@ class Home extends React.Component {
     onSubmit = objectForm => {
 
         const { list, status } = this.state
-
         if(status === 0){
             objectForm.key = Math.random()
             list.push(objectForm)
-            // console.log('add new')
         }else{
             const index = this.findIndex(objectForm.key)
-            if(index !== -1){
-                
-                list[index] = objectForm
-            }
+            list[index] = objectForm
+
+            console.log('update')
         }
         this.setState({
-            list: list
+            list : list
         })
-        // console.log(list)
-        localStorage.setItem("LIST", JSON.stringify(list))
+        
+
     }
 
     findIndex = (key) => {
@@ -68,6 +59,7 @@ class Home extends React.Component {
         const { list } = this.state
 
         const index = this.findIndex(key)
+       
         list.splice(index, 1)
         this.setState({
             list: list
@@ -75,27 +67,29 @@ class Home extends React.Component {
         localStorage.setItem("LIST", JSON.stringify(list));
     }
 
+    onUpdate = key => {
 
-    setSelectedItem = record => {
-
-
+        const {list} = this.state
+        // console.log(list)
+        const index = this.findIndex(key)
+        // console.log(index)
+        const taskSelected = list[index]
+        
         this.setState({
-            selectedItem: record,
+            taskEditing : taskSelected,
             status : 1
-        })
+        })        
+        
     }
-    setStatus = () => {
-
-    }
-
+   
     render() {
 
-        const { list, selectedItem, status} = this.state
+        const { list, taskEditing, status} = this.state
 
         return (
             <div>
-                <Form onSubmit={this.onSubmit} listItem={selectedItem} itemEditing={this.itemEditing} status = {status}/>
-                <ListTable data={list} onDelete={this.onDelete} selectItem={this.setSelectedItem}/>
+                <Form onSubmit={this.onSubmit} listItem={taskEditing} status = {status}/>
+                <ListTable data={list} onDelete={this.onDelete} selectItem={this.onUpdate} taskEditing={taskEditing}/>
             </div>
         )
     }

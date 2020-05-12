@@ -6,7 +6,8 @@ class ListTable extends React.Component  {
 
     render(){
 
-    const {selectItem, onDelete, data} = this.props
+    const {itemEditing, onDelete, data} = this.props
+    console.log(itemEditing)
 
 
     const columns = [
@@ -60,7 +61,7 @@ class ListTable extends React.Component  {
                 key: 'action',
                 render: (text, record) => (
                     <Space size="middle">
-                        <a className = "btn-edit" onClick = {() => selectItem(record)}>Edit</a>
+                        <a className = "btn-edit" onClick = {() => selectItem(record.key)}>Edit</a>
                         <a className = "btn-delete" onClick = {() => onDelete(record.key)}>Delete</a>
                     </Space>
                 ),

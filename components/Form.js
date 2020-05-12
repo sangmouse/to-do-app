@@ -31,6 +31,8 @@ const formItemLayout = {
 
 class TaskForm extends React.Component {
 
+
+
     formRef = React.createRef();
 
     onFinish = values => {
@@ -50,11 +52,13 @@ class TaskForm extends React.Component {
 
       
         const { listItem } = this.props
+        // console.log(listItem)
 
         if (listItem !== null) {
             // console.log(listItem)
+            
             this.formRef.current.setFieldsValue({
-                // key: listItem.key,
+                key: listItem.key,
                 username: listItem.username,
                 country: listItem.country,
                 gender: listItem.gender,
